@@ -22,6 +22,10 @@ export const Cursos = () => {
 
    navigate(`/persona/${cursoId}`)
   };
+
+  const handleEstadisticasClick = (cursoId) => {
+    navigate(`/reporte/${cursoId}`);
+  };
   return (
     <div>
       <header>
@@ -37,6 +41,12 @@ export const Cursos = () => {
               onClick={() => handleInscripcionClick(curso.id)}
             >
               Inscribirse
+            </button>
+            <button
+              class="ui primary button"
+              onClick={() => handleEstadisticasClick(curso.id)}
+            >
+              Estadisticas
             </button>
           </div>
         ))}
