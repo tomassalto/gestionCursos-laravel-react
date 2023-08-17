@@ -27,4 +27,22 @@ class CursoController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function getCoursesByCategory($category)
+    {
+        $courses = Curso::where('id_categoria', $category)->get();
+        return response()->json($courses);
+    }
+
+    public function getCoursesByAlphabeticalOrder()
+    {
+        $courses = Curso::orderBy('nombre', 'asc')->get();
+        return response()->json($courses);
+    }
+
+    public function getCoursesByCreationDate()
+    {
+        $courses = Curso::orderBy('created_at', 'desc')->get();
+        return response()->json($courses);
+    }
 }
