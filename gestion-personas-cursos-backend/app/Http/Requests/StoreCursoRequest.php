@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCursoRequest extends FormRequest
@@ -23,7 +24,8 @@ class StoreCursoRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'min:3', 'max:30'],
-            'categoria' => ['required', 'unique:cursos,categoria,'. $this->curso->id]
+            // 'categoria' => ['required', 'unique:cursos,categoria,'. $this->curso->id]
+            'categoria' => ['required', Rule::unique('cursos')->ignore($this->curso)]
         ];
     }
 }
