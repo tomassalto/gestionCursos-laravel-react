@@ -10,35 +10,32 @@ use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
 {
-    public function obtenerReporte($cursoId)
-    {
-        // $curso = Curso::findOrFail($cursoId);
+    public function obtenerReporte($cursoId)    {
+    
 
-        // // Obtener el reporte
-        // $reporte = DB::table('inscripciones')
-        // ->join('personas', 'inscripciones.id_persona', '=', 'personas.id')
-        // ->where('inscripciones.id_curso', $curso->id)
-        //     ->selectRaw('genero, SUM(CASE WHEN edad < 18 THEN 1 ELSE 0 END) as menores, SUM(CASE WHEN edad >= 18 THEN 1 ELSE 0 END) as mayores')
-        //     ->groupBy('genero')
-        //     ->get();
+        $totalInscriptos = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona' )->where('id_curso', $cursoId)->count();
+        
+        $totalMasculinos = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.genero', 'masculino')->count();
+        
+        $totalFemeninos = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.genero', 'femenino')->count();
+        
+        $totalMayores = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.edad', '>=', 18)->count();
 
-        // return response()->json($reporte);
+        $totalMenores = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.edad', '<=', 17)->count();
 
-        $inscripciones = Inscripcion::where('id_curso', $cursoId)->get();
-
-        $totalInscritos = count($inscripciones);
-        $totalMasculinos = $inscripciones->where('persona.genero', 'masculino')->count();
-        $totalFemeninos = $inscripciones->where('persona.genero', 'femenino')->count();
-
-        $porcentajeMasculinos = ($totalMasculinos / $totalInscritos) * 100;
-        $porcentajeFemeninos = ($totalFemeninos / $totalInscritos) * 100;
+        $porcentajeMasculinos = ($totalMasculinos / $totalInscriptos) * 100;
+        $porcentajeFemeninos = ($totalFemeninos / $totalInscriptos) * 100;
+        $porcentajeMayores = ($totalMayores / $totalInscriptos) * 100;
+        $porcentajeMenores = ($totalMenores / $totalInscriptos) * 100;
 
         return response()->json([
-            'total_inscritos' => $totalInscritos,
+            'total_inscritos' => $totalInscriptos,
             'total_masculinos' => $totalMasculinos,
             'total_femeninos' => $totalFemeninos,
             'porcentaje_masculinos' => round($porcentajeMasculinos, 2),
             'porcentaje_femeninos' => round($porcentajeFemeninos, 2),
+            'porcentaje_mayores' => round($porcentajeMayores, 2),
+            'porcentaje_menores' => round($porcentajeMenores, 2),
         ]);
     }
 }
