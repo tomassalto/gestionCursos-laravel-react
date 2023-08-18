@@ -15,6 +15,7 @@ function App() {
         <Routes>
           {" "}
           <Route path="/curso" element={<Cursos />} />
+          <Route path="/curso/categoria/:id" element={<Cursos />} />
         </Routes>
         <Routes>
           {" "}

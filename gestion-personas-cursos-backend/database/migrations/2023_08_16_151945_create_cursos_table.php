@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreign('id_categoria')->references('id')->on('categorias')->cascadeOnDelete();
             $table->string('descripcion');
             $table->timestamps();
+
+            $table->unique(['nombre', 'id_categoria']);
         });
     }
 

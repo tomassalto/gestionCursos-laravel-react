@@ -111,3 +111,19 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px; /* Aumenta el espacio entre elementos */
 }
+
+.w30{
+  width: 30%;
+}
+
+.pb{
+  padding-bottom: 10%;
+}
+
+.jcse{
+  justify-content: space-evenly;
+}
+
+.fdc{
+  flex-direction: column;
+}

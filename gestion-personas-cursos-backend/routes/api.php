@@ -22,9 +22,13 @@ Route::post('/persona',  [PersonaController::class, 'register'])->name('persona'
 Route::get('/curso', [CursoController::class, 'mostrarCursos'])->name('curso');
 Route::post('/inscripcion', [InscripcionController::class, 'store'])->name('inscripcion');
 Route::get('/reporte/{cursoId}', [ReporteController::class ,'obtenerReporte'])->name('reporte');
-Route::get('/cursos/categoria/{category}', [CursoController::class, 'getCoursesByCategory']);
-Route::get('/cursos/alfabetico', [CursoController::class, 'getCoursesByAlphabeticalOrder']);
-Route::get('/cursos/fecha-creacion', [CursoController::class, 'getCoursesByCreationDate']);
+Route::get('/curso/categoria/{category}', [CursoController::class, 'getCoursesByCategory']);
+Route::get('/curso/alfabetico/asc', [CursoController::class, 'getCoursesByAlphabeticalOrderAsc']);
+Route::get('/curso/alfabetico/desc', [CursoController::class, 'getCoursesByAlphabeticalOrderDesc']);
+Route::get('/curso/categoria/{category}/alfabetico/{order}', [CursoController::class, 'getCoursesByCategoryAndAlphabeticalOrder']);
+Route::get('/curso/fecha-creacion/{order}', [CursoController::class, 'getCoursesByCreationDate']);
+Route::get('/curso/filtrar', [CursoController::class, 'filtrarCursos']);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

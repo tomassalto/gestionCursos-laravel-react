@@ -9,20 +9,20 @@ class Curso extends Model
 {
     use HasFactory;
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
+    protected static function boot()
+    {
+        parent::boot();
 
-    //     static::saving(function ($curso) {
-    //         $existingCurso = Curso::where('nombre', $curso->nombre)
-    //             ->where('categoria', $curso->categoria)
-    //             ->first();
+        static::saving(function ($curso) {
+            $existingCurso = Curso::where('nombre', $curso->nombre)
+                ->where('id_categoria', $curso->categoria)
+                ->first();
 
-    //         if ($existingCurso && $existingCurso->id !== $curso->id) {
-    //             throw new \Exception('A course with the same name already exists in this category.');
-    //         }
-    //     });
-    // }
+            if ($existingCurso && $existingCurso->id !== $curso->id) {
+                throw new \Exception('A course with the same name already exists in this category.');
+            }
+        });
+    }
 
     public function personas()
     {

@@ -16,18 +16,58 @@ function ReporteCurso({ }) {
   }, []);
 
   if (!reporte) {
-    return <p>Cargando reporte...</p>;
+    return (
+      <div class="ui segment">
+        <div class="ui active inverted dimmer">
+          <div class="ui large text loader">Loading</div>
+        </div>      
+      </div>
+    );
   }
-
+ 
   return (
-    <div>
-      <h2>Reporte del Curso {id}</h2>
-      <p>Total inscritos: {reporte.total_inscritos}</p>
-      <p>Porcentaje Masculinos: {reporte.porcentaje_masculinos.toFixed(2)}%</p>
-      <p>Porcentaje Femeninos: {reporte.porcentaje_femeninos.toFixed(2)}%</p>
-      <p>Porcentaje Mayor de edad: {reporte.porcentaje_mayores.toFixed(2)}%</p>
-      <p>Porcentaje Menor de edad: {reporte.porcentaje_menores.toFixed(2)}%</p>
-    </div>
+    <>
+      <div>
+        {reporte.total_inscritos === 0 ? (
+          <h1 className="w100 pt jcc">
+            No hay inscritos en el curso {reporte.curso_nombre} todavía.
+          </h1>
+        ) : (
+          <div className="grid-item">
+            <h2>Estadisticas del Curso: {reporte.curso_nombre.nombre}</h2>
+            <p>Total inscritos: {reporte.total_inscritos}</p>
+            <p>
+              Porcentaje Masculinos:{" "}
+              {reporte.porcentaje_masculinos
+                ? reporte.porcentaje_masculinos.toFixed(2)
+                : 0}
+              %
+            </p>
+            <p>
+              Porcentaje Femeninos:{" "}
+              {reporte.porcentaje_femeninos
+                ? reporte.porcentaje_femeninos.toFixed(2)
+                : 0}
+              %
+            </p>
+            <p>
+              Porcentaje Mayor de edad:{" "}
+              {reporte.porcentaje_mayores
+                ? reporte.porcentaje_mayores.toFixed(2)
+                : 0}
+              %
+            </p>
+            <p>
+              Porcentaje Menor de edad:{" "}
+              {reporte.porcentaje_menores
+                ? reporte.porcentaje_menores.toFixed(2)
+                : 0}
+              %
+            </p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
