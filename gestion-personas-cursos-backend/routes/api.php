@@ -10,26 +10,20 @@ use App\Http\Controllers\Api\ReporteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-/*
-Este código define un grupo de rutas con el prefijo 'v1'. Dentro de este grupo, se define una ruta de recurso API para la entidad 'cursos',
-que utiliza el controlador 'CursoController'.
-Esto significa que se generan automáticamente las rutas y métodos necesarios para realizar operaciones CRUD en la entidad 'cursos'.
- */
-
+//Esta ruta apunta a Persona controller para realizar registro de persona
 Route::post('/persona',  [PersonaController::class, 'register'])->name('persona');
-// Route::get('/personas/{personaId}/curso', [CursoController::class, 'cursosDePersona']);
+//Esta ruta apunta a Curso controller para devolver todos los registro de cursos
 Route::get('/curso', [CursoController::class, 'mostrarCursos'])->name('curso');
+//Esta ruta apunta a Inscripcion controller para realizar la inscripcion y guardarlo en la base de datos
 Route::post('/inscripcion', [InscripcionController::class, 'store'])->name('inscripcion');
+//Esta ruta apunta a Inscripcion controller tomando el id del curso para desinscribir a la persona del curso
+Route::post('/curso/{cursoId}/desinscripcion', [InscripcionController::class, 'desinscribirDeCurso'])->name('desinscripcion');
+//Esta ruta apunta a Reporte tomando el id del curso controller para realizar registro de las estadisticas del curso
 Route::get('/reporte/{cursoId}', [ReporteController::class ,'obtenerReporte'])->name('reporte');
-Route::get('/curso/categoria/{category}', [CursoController::class, 'getCoursesByCategory']);
-Route::get('/curso/alfabetico/asc', [CursoController::class, 'getCoursesByAlphabeticalOrderAsc']);
-Route::get('/curso/alfabetico/desc', [CursoController::class, 'getCoursesByAlphabeticalOrderDesc']);
-Route::get('/curso/categoria/{category}/alfabetico/{order}', [CursoController::class, 'getCoursesByCategoryAndAlphabeticalOrder']);
-Route::get('/curso/fecha-creacion/{order}', [CursoController::class, 'getCoursesByCreationDate']);
+//Esta ruta apunta a Curso controller para realizar las consultas a partir de las 3 querys existentes
 Route::get('/curso/filtrar', [CursoController::class, 'filtrarCursos']);
-
-
+//Esta ruta apunta a Curso controller para mostrar los ultimos 5 cursos agregados
+Route::get('/curso/ultimos-5', [CursoController::class, 'getLastAddedCourses']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

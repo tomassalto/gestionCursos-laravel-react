@@ -10,6 +10,9 @@ use function Laravel\Prompts\error;
 
 class PersonaController extends Controller
 {
+    /*
+    *Verifica que la persona exista, si no la crea a partir de los datos recibidos por parametro
+    */
     public function register(Request $request)
     {
         // Validar los datos recibidos en la solicitud
@@ -37,18 +40,8 @@ class PersonaController extends Controller
             return response()->json(['message' => 'No se registro exitosamente'], 409);
         }
      
-    }
-
-    public function test()
-    {
-        return response()->json(['message' => 'jaja']);
-    }
-
-    public function getCursosRelacionados(Persona $persona)
-    {
-        $cursos = $persona->cursos; // Esto asume que tienes una relación "cursos" en el modelo Persona
-        return response()->json($cursos);
-    }
+    }   
+   
 }
 
 ?>

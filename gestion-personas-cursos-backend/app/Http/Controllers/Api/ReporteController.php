@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
 {
+    /*
+    *Obtiene la inscripcion haciendo un join entre curso y persona, para sacar los datos de las personas y realizar cuentas
+    */
     public function obtenerReporte($cursoId)    {
     
 
@@ -19,18 +22,7 @@ class ReporteController extends Controller
         ->where('id_curso', $cursoId)
         ->select('cursos.nombre')
         ->first();
-
-        // $nombreCurso = Curso::join('inscripciones', 'inscripciones.id_curso', '=', 'cursos.id')
-        // ->where('cursos.id', $cursoId)
-        // ->select('cursos.nombre')
-        // ->first();
-
-        // $nombreCurso = DB::select("SELECT cursos.nombre
-        //                    FROM cursos
-        //                    JOIN inscripciones ON inscripciones.id_curso = cursos.id
-        //                    WHERE cursos.id = $cursoId
-        //                    LIMIT 1");
-
+      
         $totalMasculinos = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.genero', 'masculino')->count();
         
         $totalFemeninos = Inscripcion::join('personas', 'personas.id', '=', 'inscripciones.id_persona')->where('id_curso', $cursoId)->where('personas.genero', 'femenino')->count();

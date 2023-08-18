@@ -10,15 +10,7 @@ use App\Models\Curso;
 
 class CursoController extends Controller
 {
-    // public function cursosDePersona($personaId)
-    // {
-    //     $persona = Persona::findOrFail($personaId);
-
-    //     $cursos = $persona->cursos; // Esto asume que tienes una relación "cursos" en el modelo Persona
-
-    //     return response()->json($cursos);
-    // }
-
+ /* Esta función muestra todos los cursos disponibles junto con su categoría correspondiente. Primero, se realiza una consulta a la base de datos para obtener los cursos, utilizando la función join para unir la tabla de cursos con la tabla de categorías. Luego, se seleccionan los campos necesarios, incluyendo el nombre de la categoría y se obtiene el resultado en formato JSON.*/
     public function mostrarCursos()
     {
         $cursos = Curso::join('categorias', 'cursos.id_categoria', '=', 'categorias.id')
@@ -26,90 +18,43 @@ class CursoController extends Controller
             ->get();
 
         return response()->json($cursos);
-    }
+    }    
 
-    public function getCoursesByCategory($category)
-    {
-        // $courses = Categoria::join('cursos', 'cursos.id_categoria', '=', 'categorias.id')->where('nombre', $category)->get();
-        $courses = Curso::select('cursos.*')
-            ->join('categorias', 'cursos.id_categoria', '=', 'categorias.id')
-            ->where('categorias.nombre', $category)
-            ->get();
-        // $nombreCategoria = Categoria::select('categorias.nombre')
-        //     ->join('cursos', 'cursos.id_categoria', '=', 'categorias.id')
-        //     ->where('categorias.nombre', $category)
-        //     ->get();
-        return response()->json($courses);
-    }
-
-    public function getCoursesByAlphabeticalOrderAsc()
-    {
-        $courses = Curso::orderBy('nombre', 'asc')->get();
-        return response()->json($courses);
-    }
-    public function getCoursesByAlphabeticalOrderDesc()
-    {
-        $courses = Curso::orderBy('nombre', 'desc')->get();
-        return response()->json($courses);
-    }
-
-    public function getCoursesByCategoryAndAlphabeticalOrder($category, $order)
-    {
-        $courses = Curso::select('cursos.*')
-        ->join('categorias', 'cursos.id_categoria', '=', 'categorias.id')
-        ->where('categorias.nombre', $category);
-            
-
-        if ($order === 'asc') {
-            $courses->orderBy('cursos.nombre', 'asc');
-        } elseif ($order === 'desc') {
-            $courses->orderBy('cursos.nombre', 'desc');
-        }
-
-        $courses = $courses->get();
-
-        return response()->json($courses);
-    }
-
-    public function getCoursesByCreationDate($order)
-    {
-        $courses = Curso::select('cursos.*')
-            ->join('categorias', 'cursos.id_categoria', '=', 'categorias.id');
-
-        if ($order === 'asc') {
-            $courses->orderBy('cursos.created_at', 'asc');
-        } elseif ($order === 'desc') {
-            $courses->orderBy('cursos.created_at', 'desc');
-        }
-
-        $courses = $courses->get();
-
-        return response()->json($courses);
-    }
-
+    /*
+    *Filtra los cursos segun la query, que puede ser por fecha, alfabetico o categoria
+    */
     public function filtrarCursos(Request $request)
     {
-        $category = $request->input('categoria');
-        $orderAlfabetico = $request->input('ordenAlfabetico');
-        $orderFecha = $request->input('ordenFecha');
-
-        $courses = Curso::select('cursos.*')
+        $query = Curso::select('cursos.*')
         ->join('categorias', 'cursos.id_categoria', '=', 'categorias.id');
 
-        if ($category) {
-            $courses->where('categorias.nombre', $category);
-        }
-        if ($orderFecha) {
-            $courses->orderBy('created_at', $orderFecha);
+        if ($request->categoria) {
+            $query->where('categorias.nombre', $request->categoria);
         }
 
-        if ($orderAlfabetico) {
-            $courses->orderBy('nombre', $orderAlfabetico);
+        if ($request->ordenFecha) {
+            $query->orderBy('created_at',
+                $request->ordenFecha
+            );
         }
 
-        $filteredCourses = $courses->get();
+        if ($request->ordenAlfabetico) {
+            $query->orderBy('nombre', $request->ordenAlfabetico);
+        }
 
-        return response()->json($filteredCourses);
+        return $query->get();
+    }
+
+    /*
+    * Muestra los ultimos 5 cursos agregados en el carrousel
+    */
+    public function getLastAddedCourses()
+    {
+        $lastAddedCourses = Curso::orderBy('created_at', 'desc')
+        ->limit(5) // Obtener los últimos 5 cursos
+            ->get();
+
+        return response()->json($lastAddedCourses);
     }
 
 }
