@@ -7,9 +7,26 @@ Diagrama de la base de datos, link diagram: https://drive.google.com/file/d/1qtr
 
 Para este Examen utilice Laravel + React + MYSQL + GITHUB <br />
 
+Instalar Nodejs, en mi caso use la version 18.2.0  <br />
 
+```bash
+npm install  
+```
+Instalar Laravel 10.18.0
 
+```bash
+composer install
+```
+Levantar el server backend con PHP artisan
 
+```bash
+php artisan serve
+```
+Levanto el server frontend con Node
+
+```bash
+npm start
+```
 
 ## Uso
 
