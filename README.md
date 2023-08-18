@@ -15,7 +15,7 @@ INSERT INTO categorias (id, nombre) VALUES (2, 'backend');<br />
 INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (1, "Javscript", 1, "Curso que muestra las bases de javascript");<br />
 INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (2, "Javscript", 2, "Curso que muestra las bases de javascript backend");<br />
 INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (3, "PHP", 1, "Curso que muestra las bases de PHP");<br />
-INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (4, "PHP", 1, "Curso que muestra las bases de PHP backend");<br />
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (4, "PHP", 2, "Curso que muestra las bases de PHP backend");<br />
 
 Luego de esto, ya podria realizar cualquier operacion de del CRUD.  <br />
 No tendria problema en agregar la funcionalidad de crear un curso, pero al pensar en que el usuario no deberia ser capaz de crearlo decidi hacerlo de esta manera <br /><br />
