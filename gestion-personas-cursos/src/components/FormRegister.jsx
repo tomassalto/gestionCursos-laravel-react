@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import Modal from "react-modal";
+import Modal from "react-modal/lib/components/Modal";
 const baseUrl = "http://127.0.0.1:8000/api/"; // to do agregar .env
 
 function FormRegister() {
@@ -37,9 +37,11 @@ function FormRegister() {
     },
   };
   const [modalMessage, setModalMessage] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   let { id } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+ 
   // const [redirectToHome, setRedirectToHome] = useState(false);
 
   const handleChange = (event) => {
@@ -125,7 +127,12 @@ function FormRegister() {
         })
         .then((secondResponse) => {
           if (secondResponse.ok) {
+            setIsSuccessModalOpen(true);
             console.log("Inscripción exitosa");
+            setTimeout(() => {
+              setIsSuccessModalOpen(false);
+              navigate(`/curso`);
+            }, 3000);            
           }
           if (secondResponse.status === 409) {
             setIsModalOpen(true);
@@ -217,13 +224,33 @@ function FormRegister() {
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
         >
-          <div style={{padding: "30px"}}>
+          <div style={{ padding: "30px" }}>
             <h2 className="w100 jcc pt error">Error de inscripción</h2>
             <p className="">{modalMessage}</p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
                 class="ui primary button"
                 onClick={() => setIsModalOpen(false)}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </Modal>
+      </div>
+      <div className="ui modal">
+        <Modal
+          style={customStyles}
+          isOpen={isSuccessModalOpen}
+          onRequestClose={() => setIsSuccessModalOpen(false)}
+        >
+          <div style={{ padding: "30px" }}>
+            <h2 className="w100 jcc pt verde">Inscripción exitosa</h2>
+            <p className="">La inscripción ha sido exitosa.</p>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button
+                className="ui primary button"
+                onClick={() => setIsSuccessModalOpen(false)}
               >
                 Cerrar
               </button>

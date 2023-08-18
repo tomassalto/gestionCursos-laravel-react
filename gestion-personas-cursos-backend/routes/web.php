@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/carousel', function () {
+    return view('carousel');
 });
 
 Auth::routes();

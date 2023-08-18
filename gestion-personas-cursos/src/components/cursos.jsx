@@ -10,18 +10,8 @@ export const Cursos = () => {
   const [ordenFecha, setOrdenFecha] = useState("");
 
   useEffect(() => {
-    // let url = `${baseUrl}curso`;
-    let url = `${baseUrl}curso/filtrar`;
-    // if (categoriaSeleccionada && ordenAlfabetico) {
-    //   url = `${baseUrl}curso/categoria/${categoriaSeleccionada}/alfabetico/${ordenAlfabetico}`;
-    // } else if (categoriaSeleccionada === "" && categoriaSeleccionada) {
-    //   url = `${baseUrl}curso/categoria/${categoriaSeleccionada}`;
-    // } else if (ordenAlfabetico) {
-    //   url = `${baseUrl}curso/alfabetico/${ordenAlfabetico}`;
-    // }
-    // if (ordenFecha) {
-    //   url += `/fecha-creacion/${ordenFecha}`;
-    // }
+   
+    let url = `${baseUrl}curso/filtrar`;   
 
     const queryParams = [];
     if (categoriaSeleccionada) {
@@ -62,6 +52,9 @@ export const Cursos = () => {
     navigate(`/reporte/${cursoId}`);
   };
 
+  const handleDesinscripcionClick = (cursoId) => {
+     navigate(`/desinscripcion/${cursoId}`);
+   };
   const handleCategoriaChange = (event) => {
     setCategoriaSeleccionada(event.target.value);
   };
@@ -72,20 +65,14 @@ export const Cursos = () => {
 
   const handleOrdenFechaChange = (event) => {
     setOrdenFecha(event.target.value);
-  };
-  // const cursosFiltrados =
-  //   categoriaSeleccionada === ""
-  //     ? cursos
-  //     : cursos.filter(
-  //         (curso) => curso.nombre_categoria === categoriaSeleccionada
-  //       );
+  }; 
 
   return (
     <div>
       <header>
         <h1 className="w100 pt jcc">Lista de Cursos</h1>
       </header>
-      <div className="w100 df aic pb jcse">
+      <div className="w100 df aic pb jcse mt400">
         <div>
           <h2>Filtrar por:</h2>
         </div>
@@ -128,37 +115,37 @@ export const Cursos = () => {
       </div>
 
       <div className="ui grid container jcc grid-container">
-        <div className="">
-          {/* <select
-            onChange={handleCategoriaChange}
-            value={categoriaSeleccionada}
-          >
-            <option value="">Seleccione una categoría</option>
-            <option value="backend">Backend</option>
-            <option value="frontend">Frontend</option>
-          </select> */}
-        </div>
+        <div className=""></div>
         {cursos.map((curso) => (
           <div key={curso.id} className="four wide column bs br pdi grid-item">
-            <h2>{curso.nombre}</h2>
+            <h2 className="azul">{curso.nombre}</h2>
             {categoriaSeleccionada === "" ? (
               <h3>Categoria: {curso.nombre_categoria}</h3>
             ) : (
               <h3>Categoria: {categoriaSeleccionada}</h3>
             )}
             <p>Descripcion: {curso.descripcion}</p>
-            <button
-              className="ui primary button"
-              onClick={() => handleInscripcionClick(curso.id)}
-            >
-              Inscribirse
-            </button>
-            <button
-              className="ui primary button"
-              onClick={() => handleEstadisticasClick(curso.id)}
-            >
-              Estadisticas
-            </button>
+            <div className="button-container">
+              {" "}
+              <button
+                className="positive ui button button3 mt-mb"
+                onClick={() => handleInscripcionClick(curso.id)}
+              >
+                Inscribirse
+              </button>
+              <button
+                className="ui primary button button3 mt-mb"
+                onClick={() => handleEstadisticasClick(curso.id)}
+              >
+                Estadisticas
+              </button>
+              <button
+                className="negative ui button button3 "
+                onClick={ () => handleDesinscripcionClick(curso.id)}
+              >
+                Desinscribirme
+              </button>
+            </div>
           </div>
         ))}
       </div>

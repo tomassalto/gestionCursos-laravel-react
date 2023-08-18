@@ -10,6 +10,9 @@ use App\Models\Curso;
 
 class InscripcionController extends Controller
 {
+    /*
+    *Verifica que exista la persona, y verfica si esa persona ya esta inscripta, si no lo esta la inscribe
+    */
     public function store(Request $request)
     {
         $data = $request;
@@ -44,5 +47,36 @@ class InscripcionController extends Controller
         $inscripcion->save();
 
         return response()->json(['message' => 'Inscripción realizada con éxito'], 201);
+    }
+
+    /*
+    *Verifica que la persona este inscripta en el curso que viene por paramatro, si lo esta, lo desinscribe
+    */
+    public function desinscribirDeCurso(Request $request, $cursoId)
+    {
+        $data = $request;
+        $persona = Persona::where('dni', $data['dni'])->first();
+        if ($persona) {
+            $idPersona = $persona->id; // Devuelve el ID de la persona encontrada
+        }
+        // Buscar la inscripción del usuario en este curso        
+        $inscripcionExistente = Inscripcion::where([
+            'id_persona' => $idPersona,
+            'id_curso' => $cursoId,
+        ])->first();
+
+        if ($inscripcionExistente) {
+            // Desinscribir al usuario de este curso 
+            $inscripcionExistente->delete();
+
+            return response()->json([
+                'message' => 'Te has desinscrito del curso exitosamente'
+            ]);
+        } else {
+            // No encontró la inscripción
+            return response()->json([
+                'message' => 'No estás inscrito en este curso'
+            ], 404);
+        }
     }
 }

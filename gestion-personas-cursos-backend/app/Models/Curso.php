@@ -9,6 +9,9 @@ class Curso extends Model
 {
     use HasFactory;
 
+    /*
+    *Verifica que no exista un nombre y categoria duplicados
+    */
     protected static function boot()
     {
         parent::boot();
