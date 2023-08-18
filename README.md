@@ -2,7 +2,7 @@
 Gestion de Cursos. 
 
 
-Diagrama de la base de datos, link diagram: https://drive.google.com/file/d/1qtryqrzR_Rnxkt6SfZwI3kPdkwQv44YM/view?usp=sharing <br />
+Diagrama de la base de datos, link diagram: [https://drive.google.com/file/d/1qtryqrzR_Rnxkt6SfZwI3kPdkwQv44YM/view?usp=sharing](https://drive.google.com/file/d/1qtryqrzR_Rnxkt6SfZwI3kPdkwQv44YM/view?usp=sharing)
 ## Instalacion
 
 Para este Examen utilice Laravel + React + MYSQL + GITHUB <br />
