@@ -1,13 +1,20 @@
 # gestionCursos-laravel-react
 Gestion de Cursos. 
 
-Para este Examen utilice Laravel + React + MYSQL + GITHUB <br />
 
 Diagrama de la base de datos, link diagram: https://drive.google.com/file/d/1qtryqrzR_Rnxkt6SfZwI3kPdkwQv44YM/view?usp=sharing <br />
+## Instalacion
 
-En este ejercicio opte por cargar los cursos yo mismo. Para hacerlo lo realice a traves de MYSQL. Ejemplo de creacion de cursos<br />
+Para este Examen utilice Laravel + React + MYSQL + GITHUB <br />
 
-//primero creo la categoria <br />
+
+
+
+
+## Uso
+
+En este ejercicio opte por cargar los cursos yo mismo. Para hacerlo lo realice a traves de MYSQL. Ejemplo de creacion de cursos:<br />
+primero creo la categoria <br />
 INSERT INTO categorias (id, nombre) VALUES (1, 'frontend');<br />
 INSERT INTO categorias (id, nombre) VALUES (2, 'backend');<br />
 
