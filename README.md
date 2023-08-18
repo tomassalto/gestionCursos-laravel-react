@@ -1,7 +1,7 @@
 # gestionCursos-laravel-react
 Gestion de Cursos. 
 
-Para este curso utilice Laravel + React + MYSQL + GITHUB <br />
+Para este Examen utilice Laravel + React + MYSQL + GITHUB <br />
 
 Diagrama de la base de datos, link diagram: https://drive.google.com/file/d/1qtryqrzR_Rnxkt6SfZwI3kPdkwQv44YM/view?usp=sharing <br />
 
@@ -18,5 +18,5 @@ INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (3, "PHP", 1, 
 INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (4, "PHP", 1, "Curso que muestra las bases de PHP backend");<br />
 
 Luego de esto, ya podria realizar cualquier operacion de del CRUD.  <br />
-
+No tendria problema en agregar la funcionalidad de crear un curso, pero pensar en que el usuario no deberia ser capaz de crearlo decidi hacerlo de esta manera <br /><br />
 Muchas gracias por la oportunidad, quedo a la espera de su respuesta, saludos!!
