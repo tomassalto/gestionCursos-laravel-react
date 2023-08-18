@@ -24,7 +24,7 @@ INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (9, "Angular",
 
 
 //pantalla inicial<br /> <br />
-(https://prnt.sc/XIIPABCSWyUI) <br />
+![Pantalla inicial](https://prnt.sc/XIIPABCSWyUI) <br />
 
 Luego de esto, ya podria realizar cualquier operacion de del CRUD.  <br />
 No tendria problema en agregar la funcionalidad de crear un curso, pero al pensar en que el usuario no deberia ser capaz de crearlo decidi hacerlo de esta manera <br /><br />
