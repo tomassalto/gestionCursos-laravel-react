@@ -51,35 +51,44 @@ En este ejercicio opte por cargar los cursos yo mismo. Para hacerlo lo realice a
 primero creo la categoria <br />
 
 Carga de Categoria
-`(INSERT INTO categorias (id, nombre) VALUES (1, 'frontend');`
-`(INSERT INTO categorias (id, nombre) VALUES (2, 'backend');`
+```sql
+INSERT INTO categorias (id, nombre) VALUES (1, 'frontend');
+INSERT INTO categorias (id, nombre) VALUES (2, 'backend');
+```
 
 Carga de Cursos
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (1, "Javscript", 1, "Curso que muestra las bases de javascript");`
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (2, "Javscript", 2, "Curso que muestra las bases de javascript backend");`
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (3, "PHP", 1, "Curso que muestra las bases de PHP");`
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (4, "PHP", 2, "Curso que muestra las bases de PHP backend"); `
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (5, "React", 1, "Curso que muestra las bases de React backend");`
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (6, "Laravel", 2, "Curso que muestra las bases de Laravel backend");`
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (7, "MoongoDb", 2, "Curso que muestra las bases de MoongoDb"); `
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (8, "Node", 2, "Curso que muestra las bases de Nodejs backend"); `
-`INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (9, "Angular", 1, "Curso que muestra las bases de PHP");`
+```sql
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (2, "Javscript", 2, "Curso que muestra las bases de javascript backend");
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (3, "PHP", 1, "Curso que muestra las bases de PHP");
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (4, "PHP", 2, "Curso que muestra las bases de PHP backend"); 
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (5, "React", 1, "Curso que muestra las bases de React backend");
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (6, "Laravel", 2, "Curso que muestra las bases de Laravel backend");
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (7, "MoongoDb", 2, "Curso que muestra las bases de MoongoDb"); 
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (8, "Node", 2, "Curso que muestra las bases de Nodejs backend"); 
+INSERT INTO cursos (id, nombre, id_categoria, descripcion) VALUES (9, "Angular", 1, "Curso que muestra las bases de PHP");
+```
+      
 
 
-Pantalla inicial<br /> <br />
+Pantalla inicial:
+
 [![Imagen-de-Whats-App-2023-08-18-a-las-15-55-57.jpg](https://i.postimg.cc/prvW0CvH/Imagen-de-Whats-App-2023-08-18-a-las-15-55-57.jpg)](https://postimg.cc/34LQNgWS) <br />
 
-Lista cursos<br />
-[![image.png](https://i.postimg.cc/BZNf94cD/image.png)](https://postimg.cc/0r6B7g42) <br />
+Pantalla de lista cursos:
 
-Registro <br />
-[![image.png](https://i.postimg.cc/5t5kBSsv/image.png)](https://postimg.cc/4Kd5ZVkN) <br />
+[![image.png](https://i.postimg.cc/BZNf94cD/image.png)](https://postimg.cc/0r6B7g42) 
 
-Estadisticas <br />
-[![image.png](https://i.postimg.cc/j5dvz0w0/image.png)](https://postimg.cc/WDCMvywX) <br />
+Pantalla de registro:
 
-Desinscripcion  <br />
-[![image.png](https://i.postimg.cc/CxsQD4P8/image.png)](https://postimg.cc/68TcxCN6) <br /><br />
+[![image.png](https://i.postimg.cc/5t5kBSsv/image.png)](https://postimg.cc/4Kd5ZVkN)
+
+Pantalla de estadisticas:
+
+[![image.png](https://i.postimg.cc/j5dvz0w0/image.png)](https://postimg.cc/WDCMvywX) 
+
+Pantalla de desinscripcion:
+
+[![image.png](https://i.postimg.cc/CxsQD4P8/image.png)](https://postimg.cc/68TcxCN6) 
 
 Luego de esto, ya podria realizar cualquier operacion de del CRUD. 
 No tendria problema en agregar la funcionalidad de crear un curso, pero al pensar en que el usuario no deberia ser capaz de crearlo decidi hacerlo de esta manera.
